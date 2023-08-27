@@ -1,6 +1,6 @@
 <h4>Add a New Ticket for Flight <%= flightId %></h4>
 
-<form action="/flight/tickets" method="POST">
+<form action="/flights/<%= flightId %>/tickets" method="POST">
     <div>
         <label for="seat">Seat:</label>
         <input name="seat" required pattern="[A-F][1-9]\d?">
