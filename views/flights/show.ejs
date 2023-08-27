@@ -1,58 +1,68 @@
 <h1>Flight Details</h1>
 
-<p><strong>Airline:</strong> <%= flight.airline %></p>
-<p><strong>Airport:</strong> <%= flight.airport %></p>
-<p><strong>Flight Number:</strong> <%= flight.flightNo %></p>
-<p><strong>Departure:</strong> <%= flight.departure.toLocaleString() %></p>
+<p><strong>Airline:</strong>
+  <%= flight.airline %>
+</p>
+<p><strong>Airport:</strong>
+  <%= flight.airport %>
+</p>
+<p><strong>Flight Number:</strong>
+  <%= flight.flightNo %>
+</p>
+<p><strong>Departure:</strong>
+  <%= flight.departure.toLocaleString() %>
+</p>
 
-  <h2>Destinations</h2>
-  <ul>
-  <% if(flight.destinations && flight.destinations.length > 0) { %>
-     <% flight.destinations.forEach(destination => { %>
+<h2>Destinations</h2>
+<ul>
+  <% if(flight.destinations && flight.destinations.length> 0) { %>
+    <% flight.destinations.forEach(destination=> { %>
       <li>
-        <strong>Airport:</strong> <%= destination.airport %>, 
-        <strong>Arrival:</strong> <%= destination.arrivals.toLocaleString() %>
+        <strong>Airport:</strong>
+        <%= destination.airport %>,
+          <strong>Arrival:</strong>
+          <%= destination.arrivals.toLocaleString() %>
       </li>
-    <% }); %>
- <% } else { %>
-      <p>No destinations added yet.</p>
-<% } %>
+      <% }); %>
+        <% } else { %>
+          <p>No destinations added yet.</p>
+          <% } %>
 </ul>
 <a href="/">Back to flights list</a>
 <h3>Add Destination</h3>
 <form action="/<%= flight._id %>/destinations" method="POST">
-    <div>
-        <label for="airport">Airport:</label>
-        
-        <select name="airport" required>
-          <option value="DEN">DEN</option>
-          <option value="AUS">AUS</option>
-          <option value="LAX">LAX</option>
-          <option value="SAN">SAN</option>
-          <option value="DWF">DWF</option>
-        </select>
-    </div>
-    <div>
-        <label for="arrivals">Arrival:</label>
-        <input type="datetime-local" id="arrivals" name="arrivals" required>
-    </div>
-    <div>
-        <input type="submit" value="Add Destination">
-    </div>
+  <div>
+    <label for="airport">Airport:</label>
+
+    <select name="airport" required>
+      <option value="DEN">DEN</option>
+      <option value="AUS">AUS</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+      <option value="DWF">DWF</option>
+    </select>
+  </div>
+  <div>
+    <label for="arrivals">Arrival:</label>
+    <input type="datetime-local" id="arrivals" name="arrivals" required>
+  </div>
+  <div>
+    <input type="submit" value="Add Destination">
+  </div>
 </form>
 
 
 <a href="/flights/<%= flight._id %>/tickets/new" class="btn">Add a New Ticket</a>
 <h1>Tickets</h1>
-    <% if(tickets && tickets.length> 0) { %>
-      <ul>
-        <% tickets.forEach(ticket=> { %>
-          <li>
-            Seat: <%= ticket.seat %> |
-              Price: <%= ticket.price %>
-          </li>
-          <% }); %>
-            <% } else { %>
-              <p>No tickets added yet.</p>
-              <% } %>
-      </ul>
+<% if(tickets && tickets.length > 0) { %>
+  <ul>
+    <% tickets.forEach(ticket=> { %>
+      <li>
+        Seat: <%= ticket.seat %> |
+        Price: <%= ticket.price %>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No tickets added yet.</p>
+<% } %>
